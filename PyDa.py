@@ -4,7 +4,7 @@ import wx
 from espeak import espeak
 import speech_recognition as sr
 
-espeak.synth("Welcome User")
+espeak.synth("Welcome Osborne")
 
 class MyFrame(wx.Frame):
 	def __init__(self):
@@ -56,8 +56,11 @@ class MyFrame(wx.Frame):
 				#wikipedia
 				# input = input.split(" ")
 				# input= ' '.join(input[2:])
-				espeak.synth("Search for "+input)
-				print wikipedia.summary(input)
+				try:
+					espeak.synth("Search for "+input)
+					print wikipedia.summary(input)
+				except wikipedia.exceptions.PageError:
+					print "Query Not Found...Try again!"
 
 if __name__ == "__main__":
 	app = wx.App(True)
